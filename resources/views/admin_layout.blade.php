@@ -32,8 +32,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <header class="header fixed-top clearfix">
 <!--logo start-->
 <div class="brand">
-    <a href="index.html" class="logo">
-        ADMIN
+    <a href="{{URL::to('/dashboard')}}" class="logo">
+        Admin
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
@@ -44,19 +44,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--search & user info start-->
     <ul class="nav pull-right top-menu">
         <li>
-            <input type="text" class="form-control search" placeholder=" Search">
+            <!-- <input type="text" class="form-control search" placeholder=" Search"> -->
         </li>
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="{{asset('public/backend/images/2.png')}}">
-                <span class="username">John Doe</span>
+                <span class="username">
+                	<?php 
+						$name = Session::get('admin_name');
+						if ($name) {
+							echo $name;
+						}
+					?>
+                </span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="login.html"><i class="fa fa-key"></i> Đăng xuất</a></li>
+                <li><a href="#"><i class="fa fa-cog"></i> Cài đặt</a></li>
+                <li><a href="{{URL::to('/logout')}}"><i class="fa fa-key"></i> Đăng xuất</a></li>
             </ul>
         </li>
         <!-- user login dropdown end -->
@@ -84,8 +90,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Danh mục sản phẩm</span>
                     </a>
                     <ul class="sub">
-						<li><a href="typography.html">Thêm danh mục</a></li>
-						<li><a href="glyphicon.html">Liệt kệ danh mục</a></li>
+						<li><a href="{{URL::to('/add-category-product')}}">Thêm danh mục sản phẩm</a></li>
+						<li><a href="{{URL::to('/all-category-product')}}">Danh sách danh mục sản phẩm</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Thương hiệu</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to('/add-brand-product')}}">Thêm hiệu sản phẩm</a></li>
+						<li><a href="{{URL::to('/all-brand-product')}}">Danh sách thương hiệu</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Sản phẩm</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to('/add-product')}}">Thêm sản phẩm</a></li>
+						<li><a href="{{URL::to('/all-product')}}">Danh sách sản phẩm</a></li>
                     </ul>
                 </li>
             </ul>           
@@ -97,13 +123,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
-		<h3>Chào mừng bạn</h3>
-		
+		@yield('admin_content')		
     </section>
  <!-- footer -->
 		  <div class="footer">
 			<div class="wthree-copyright">
-			  <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+			  <p><!-- © 2017 Visitors. All rights reserved | Design by  --><a href="http://w3layouts.com"><!-- W3layouts --></a></p>
 			</div>
 		  </div>
   <!-- / footer -->

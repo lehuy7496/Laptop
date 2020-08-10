@@ -1,9 +1,12 @@
 @extends('layout')
-@section('content')
-<h4 class="head"><span class="m_2">SẢN PHẨM MỚI NHẤT</span> </h4>
+@section('content');
+
+@foreach($brand_name as $key =>$name)
+<h4 class="head"><span class="m_2">{{$name->brand_name}}</span> </h4>
+@endforeach
 
 <div class="top_grid2">
-   @foreach($all_product as $key => $product)
+   @foreach($brand_by_id as $key => $product)
    <div class="col-md-4 ">
       <a href="single.html">
          <div class="grid_1">
@@ -27,6 +30,5 @@
    </div>
    @endforeach
 </div>
-
 
 @endsection
