@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//front-end
+Route::get('/','HomeController@index');
+Route::get('/trang-chu','HomeController@index');
+
+//back-end
+Route::get('/admin','AdminController@index');
+Route::get('/dashboard','AdminController@showdashboard');
